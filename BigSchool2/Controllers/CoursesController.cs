@@ -1,5 +1,6 @@
 ﻿using BigSchool2.Models;
 using BigSchool2.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,20 @@ namespace BigSchool2.Controllers
     {
         readonly ApplicationDbContext _dbContext;
         // GET: Courses
-        public ActionResult Index()
+        [Authorize]
+        [HttpPost]
+        public ActionResult Index(CourseViewModel ViewModel)
         {
-            var viewModel = new CourseViewModel
+            var course = new Course
             {
-                Categories = _dbContext.Categories.ToList()
+                LecturerId = User.Identity.GetUserId(),
+                DateTime = ViewModel.GetDateTime(),
+                CategoryId = ViewModel.Category,
+                Place = ViewModel.Place
             };
-            return View(viewModel);
+            _dbContext.Courses.Add(course);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
