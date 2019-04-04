@@ -15,6 +15,7 @@ namespace BigSchool2.Controllers
         // GET: Courses
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(CourseViewModel ViewModel)
         {
             if (!ModelState.IsValid)
