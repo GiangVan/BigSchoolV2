@@ -44,7 +44,7 @@ namespace BigSchool2.Controllers
             };
             _dbContext.Courses.Add(course);
             _dbContext.SaveChanges();
-            return RedirectToAction("Create", "Home");
+            return RedirectToAction("Create", "HomeNE");
         }
     }
 }
