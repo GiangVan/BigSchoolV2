@@ -17,7 +17,7 @@ namespace BigSchool2.ViewModels
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
                 out dateTime);
-            return isValid && dateTime > DateTime.Now;
+            return (isValid && dateTime > DateTime.Now);
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.SqlClient;
+using System.Data.Entity;
 
 namespace BigSchool2.Controllers
 {
@@ -23,7 +25,6 @@ namespace BigSchool2.Controllers
                 .Where(c => c.DateTime > DateTime.Now);
             return View(upcomingCourses);
         }
-
 
     }
 }

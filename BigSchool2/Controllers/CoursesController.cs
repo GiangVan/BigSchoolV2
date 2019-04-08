@@ -16,6 +16,7 @@ namespace BigSchool2.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
+
         // GET: Courses
         public ActionResult Create()
         {
@@ -25,7 +26,8 @@ namespace BigSchool2.Controllers
             };
             return View(viewModel);
         }
-        //[Authorize]
+
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CourseViewModel viewModel)
@@ -44,7 +46,7 @@ namespace BigSchool2.Controllers
             };
             _dbContext.Courses.Add(course);
             _dbContext.SaveChanges();
-            return RedirectToAction("Create", "HomeNE");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
